@@ -1,6 +1,10 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cripto_currency")
@@ -28,6 +32,10 @@ public class CriptoCurrency {
 
     @Column(name = "price")
     private Double price;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
     public Integer getId() {
         return id;
@@ -59,5 +67,13 @@ public class CriptoCurrency {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
