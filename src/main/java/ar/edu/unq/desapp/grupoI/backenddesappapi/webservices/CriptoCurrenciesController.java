@@ -1,19 +1,10 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.webservices;
 
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.UserDTO;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.CriptoCurrencyRepository;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.model.CriptoCurrency;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.services.CriptoCurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import javax.validation.ConstraintViolationException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @CrossOrigin
@@ -21,20 +12,19 @@ import java.util.Objects;
 public class CriptoCurrenciesController {
 
     @Autowired
-    private CriptoCurrencyRepository repository;
+    private CriptoCurrencyService service;
 
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
+    @GetMapping("/price")
+    public ResponseEntity<?> getAll() throws Exception {
+
+        service.getCotizaciones();
+        return ResponseEntity.ok(service.findAll());
     }
 
-    @RequestMapping(value = "/algo", method = RequestMethod.POST)
-    public String get(@RequestBody UserDTO user, RestTemplate restTemplate) throws Exception {
+    @GetMapping("/price/{id}")
+    public ResponseEntity<?> getById(@PathVariable Integer id) throws Exception {
 
-        Map<String, Object> response = new HashMap<>();
-
-            return restTemplate.getForObject(
-                    "https://api1.binance.com/api/v3/ticker/price", String.class);
+        return ResponseEntity.ok(service.findById(id));
     }
 
 

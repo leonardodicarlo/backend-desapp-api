@@ -20,13 +20,13 @@ public class CriptoCurrency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "symbol")
     private String symbol;
 
-    @Column
+    @Column(name = "price")
     private Double price;
 
     public Integer getId() {
