@@ -37,6 +37,11 @@ public class UserService implements UserDetailsService {
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setEmail(user.getEmail());
+        newUser.setAddress(user.getAddress());
+        newUser.setCVUMercadoPago(user.getCVUMercadoPago());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setWalletAddress(user.getWalletAddress());
         return userRepository.save(newUser);
     }
 }
