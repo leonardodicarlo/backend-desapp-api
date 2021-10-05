@@ -2,6 +2,6 @@ language: java
 addons:
   sonarcloud:
     organization: leonardodicarlo
-    token: ${c0dcbeb69c58bee24706beef4558b62264708ce2}
+    token: ${SONAR_TOKEN}
 script:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
