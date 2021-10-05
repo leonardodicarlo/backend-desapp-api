@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.webservices;
 
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.CriptoCurrency;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.services.CriptoCurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,8 @@ public class CriptoCurrencyController {
 
     @PostMapping("/updateprices")
     public ResponseEntity<?> updatePrices() {
-        service.getCotizaciones();
+        service.getExchangeRates();
+        service.updatePrices();
         return ResponseEntity.ok(service.findAll());
     }
 

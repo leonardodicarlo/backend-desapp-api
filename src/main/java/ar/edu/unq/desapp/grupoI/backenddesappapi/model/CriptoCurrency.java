@@ -33,6 +33,9 @@ public class CriptoCurrency {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "price_ars")
+    private Double priceARS;
+
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
@@ -75,5 +78,13 @@ public class CriptoCurrency {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Double getPriceARS() {
+        return priceARS;
+    }
+
+    public void setPriceARS(Double priceARS) {
+        this.priceARS = priceARS;
     }
 }
