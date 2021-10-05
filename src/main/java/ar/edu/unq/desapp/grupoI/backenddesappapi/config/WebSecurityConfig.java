@@ -1,6 +1,6 @@
-package ar.edu.unq.desapp.grupoi.backenddesappapi.config;
-import ar.edu.unq.desapp.grupoi.backenddesappapi.auth.JwtAuthenticationEntryPoint;
-import ar.edu.unq.desapp.grupoi.backenddesappapi.auth.JwtRequestFilter;
+package ar.edu.unq.desapp.grupoI.backenddesappapi.config;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtAuthenticationEntryPoint;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

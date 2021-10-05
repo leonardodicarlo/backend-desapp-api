@@ -1,10 +1,10 @@
-package ar.edu.unq.desapp.grupoi.backenddesappapi.services;
+package ar.edu.unq.desapp.grupoI.backenddesappapi.services;
 
 import java.util.ArrayList;
 
-import ar.edu.unq.desapp.grupoi.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoi.backenddesappapi.model.UserDTO;
-import ar.edu.unq.desapp.grupoi.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.model.UserDTO;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

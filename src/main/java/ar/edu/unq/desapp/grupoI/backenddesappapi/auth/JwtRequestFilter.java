@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoi.backenddesappapi.auth;
+package ar.edu.unq.desapp.grupoI.backenddesappapi.auth;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ar.edu.unq.desapp.grupoi.backenddesappapi.services.UserService;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
