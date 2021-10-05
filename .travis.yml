@@ -1,12 +1,7 @@
 language: java
-env:
-  global:
-  - secure: hlAVLTzKJJKE2EHk4Mf7kY28ttQK5TVZT3RUtHbwDjbK6qV2Bg+yzykJKrmd0sLJHZ91+BKAEpWx+pUQ/e8lOg5TFoY1yfuuREcf90cOWYR5B1lkNwuy0PwGFT3qu+MLkEwzPgHrc81G3pf4GNsZdg6z/HC5CE7ZHNEjN0maMtEuhBpcvavf3zXn5iGxK6aTg880n3Ln/kMO1m8nPcBldqIJc8lzGB16cnCQLx5qBOWG4LcoTsD80aAPypTakSWFvy5rR5wlOdhtir5+BOuaGtJ2b2Ki/CVtDT7V+zE6X6pNLWFg6Y1v6CNwDNL+7gsU5eevVKF6W4GxPWK+c2BFfKd7s8CSr4f2XmCU7+lkQoPnLSNKwgiQiCrRP4YLZs6p99hCSIrKmBt1GyeFM/6iBMpL8DnQlYobyC92259cGjzZQ3ENKM8x0mE706k2bVvORxRVLXa+Sj6D/HH5S/m4bj2GNQnNwpdT2LT+x+frgirynQdXe7xk0IPHl7scdMEB9FGxVUFUWy1c9kOBOzSYtF2EzBSkx7EUO01g3YQIaMYUz5a8zAZQPQNIx13nAWygvJi7QZk6G2/TokgYI5wmxss5NBCyQLdjNg3jgp4oyTiybQshSlYZpe/d4s4HZ+CEnJoX55XFONLREl/zB7kM0j7vEajFg2xhLkZSMpSPfsM=
-  - secure: LtvE3p3Cnc3fZjQun7NB1jmH+Q3F6XwIAtBMqk0wXkbeXeGdvfKZcXEKA5KeoXP9bozTdg27C32z6z4Oh3gX1+yoOMppmhYA6gTw3n/UexybtCB8YorCVXX/CK9yAztAmQHaw2po0IoXTzOqae2Dwqeqg2b6JwFuUCv6/4+nzUq+OYVpbun4jD593iIY1q/m6bo0Izyjt6gn/T7F4UzZZ0AG4AU4+ojhYygr/2dEcRx+8elMDZmyyoT3GpTSJENiYN7YJCmeBLgMnNTCXhFaul+9YDtdsdCymalol1S3DCScq83UgaqmaCnfvnx3qNPIwqeIOcy7f9M0xPBBf6c0PRsO5gYnMySTHtge4p+wscXj3tz1Kpb594ZgK6Nn/f3uBADKfD3Q+M7UelwYwDG2VhJt9gJwhKMbh63UxOQtz2RDS1EvtNvTKdGcpksVy+zOAtQPfMTVlZjUTeaYFSDRF06mt5UEDSrJjJEPmUWofYb1pl7RmWBHIRZeol0RmFAzBNLctmKgehA98EuB5Quy6VIEkx/s4OlWZLL5n1ucTECYZvNCvTLP5lgM+RfMDd9vhRJoIVY/yc9f+jFuJCS3QB+CRqPiCmFEz8moTu5ZsCUB410bUktP9KrWp+MDAisJ6aZWUQ4+0Wco6GDplH4RkwWLHwtL+Aoq05sbsfj4uUY=
 addons:
   sonarcloud:
-    organization: "leonardodicarlo"
-    token:
-      secure: "**************************"
+    organization: leonardodicarlo
+    token: ${c0dcbeb69c58bee24706beef4558b62264708ce2}
 script:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
