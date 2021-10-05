@@ -1,6 +1,6 @@
-package ar.edu.unq.desapp.grupoI.backenddesappapi.webservices;
+package ar.edu.unq.desapp.grupoi.backenddesappapi.webservices;
 
-import ar.edu.unq.desapp.grupoI.backenddesappapi.services.CriptoCurrencyService;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.services.CriptoCurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

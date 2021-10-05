@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
+package ar.edu.unq.desapp.grupoi.backenddesappapi.model;
 
 import java.util.Date;
 

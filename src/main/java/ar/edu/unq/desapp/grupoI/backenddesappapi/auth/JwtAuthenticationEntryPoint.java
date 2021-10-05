@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoI.backenddesappapi.auth;
+package ar.edu.unq.desapp.grupoi.backenddesappapi.auth;
 
 import java.io.IOException;
 import java.io.Serializable;

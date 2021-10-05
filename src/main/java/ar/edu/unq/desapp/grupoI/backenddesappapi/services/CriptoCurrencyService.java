@@ -1,11 +1,11 @@
-package ar.edu.unq.desapp.grupoI.backenddesappapi.services;
+package ar.edu.unq.desapp.grupoi.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.CriptoCurrency;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.CriptoCurrencyDTO;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.ExchangeRate;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.ExchangeRateDTO;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.CriptoCurrencyRepository;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.ExchangeRateRepository;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.model.CriptoCurrency;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.model.CriptoCurrencyDTO;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.model.ExchangeRate;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.model.ExchangeRateDTO;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.repositories.CriptoCurrencyRepository;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.repositories.ExchangeRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

@@ -1,10 +1,10 @@
-package ar.edu.unq.desapp.grupoI.backenddesappapi.webservices;
+package ar.edu.unq.desapp.grupoi.backenddesappapi.webservices;
 
-import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtResponse;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtTokenUtil;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtRequest;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.UserDTO;
-import ar.edu.unq.desapp.grupoI.backenddesappapi.services.UserService;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.auth.JwtResponse;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.auth.JwtTokenUtil;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.auth.JwtRequest;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.model.UserDTO;
+import ar.edu.unq.desapp.grupoi.backenddesappapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
