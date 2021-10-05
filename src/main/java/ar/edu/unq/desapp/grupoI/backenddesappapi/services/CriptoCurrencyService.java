@@ -95,16 +95,18 @@ public class CriptoCurrencyService {
 
         List<ExchangeRateDTO> exchangeRatesDTO = Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
 
-        ExchangeRateDTO exchangeRateDTO = exchangeRatesDTO.stream().max(Comparator.comparing(ExchangeRateDTO::getD)).get();
+        if (exchangeRatesDTO.stream().max(Comparator.comparing(ExchangeRateDTO::getD)).isPresent()) {
+            ExchangeRateDTO exchangeRateDTO = exchangeRatesDTO.stream().max(Comparator.comparing(ExchangeRateDTO::getD)).get();
 
 
-        if (this.findByExchangeRateDate(addHoursToJavaUtilDate(exchangeRateDTO.getD(), 3)).isEmpty()) {
-            ExchangeRate exchangeRate = new ExchangeRate();
+            if (this.findByExchangeRateDate(addHoursToJavaUtilDate(exchangeRateDTO.getD(), 3)).isEmpty()) {
+                ExchangeRate exchangeRate = new ExchangeRate();
 
-            exchangeRate.setDate(addHoursToJavaUtilDate(exchangeRateDTO.getD(), 3));
-            exchangeRate.setValue(exchangeRateDTO.getV());
+                exchangeRate.setDate(addHoursToJavaUtilDate(exchangeRateDTO.getD(), 3));
+                exchangeRate.setValue(exchangeRateDTO.getV());
 
-            exchangeRateRepository.save(exchangeRate);
+                exchangeRateRepository.save(exchangeRate);
+            }
         }
     }
 
