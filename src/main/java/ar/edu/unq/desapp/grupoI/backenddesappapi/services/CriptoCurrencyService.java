@@ -46,7 +46,8 @@ public class CriptoCurrencyService {
     @Autowired
     private ExchangeRateRepository exchangeRateRepository;
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate;
 
     public Iterable<CriptoCurrency> updatePrices() {
 
