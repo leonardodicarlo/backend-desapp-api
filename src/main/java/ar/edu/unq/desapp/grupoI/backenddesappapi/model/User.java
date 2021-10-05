@@ -29,30 +29,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column
+    @Column(name = "email")
     @NotBlank(message = "El email es un campo obligatorio")
     private String email;
 
-    @Column(unique = true)
+    @Column(name = "username", unique = true)
     private String username;
 
-    @Column
+    @Column(name = "address")
     private String address;
 
-    @Column
+    @Column(name = "password")
     @JsonIgnore
     private String password;
 
-    @Column
+    @Column(name = "cvu_mercado_pago")
     private String CVUMercadoPago;
 
-    @Column
+    @Column(name = "wallet_address")
     private String walletAddress;
 
     public Integer getId() {
