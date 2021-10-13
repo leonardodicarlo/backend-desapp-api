@@ -61,21 +61,25 @@ public class CriptoCurrencyService {
             Optional<ExchangeRate> exchangeRate = this.getExchangeRate();
             ResponseEntity<CriptoCurrencyDTO[]> responseEntity =
                     restTemplate.getForEntity("https://api1.binance.com/api/v3/ticker/price", CriptoCurrencyDTO[].class);
-            List<CriptoCurrencyDTO> criptoCurrenciesBinance = Arrays.asList(responseEntity.getBody());
 
-            Map<String, CriptoCurrencyDTO> criptoCurrencyDTOBySymbolId = this.getCriptoCurrencyDTOBySymbolId(criptoCurrenciesBinance);
+            if (responseEntity.getBody() != null){
 
-            criptoCurrenciesInDB.forEach(criptoCurrency -> {
-                CriptoCurrencyDTO criptoCurrencyDTO = criptoCurrencyDTOBySymbolId.get(criptoCurrency.getSymbol());
-                CriptoCurrency criptoCurrencyToUpdate = new CriptoCurrency();
-                criptoCurrencyToUpdate.setId(criptoCurrency.getId());
-                criptoCurrencyToUpdate.setSymbol(criptoCurrency.getSymbol());
-                criptoCurrencyToUpdate.setName(criptoCurrency.getName());
-                criptoCurrencyToUpdate.setPrice(criptoCurrencyDTO.getPrice());
-                criptoCurrencyToUpdate.setPriceARS(criptoCurrencyDTO.getPrice()* exchangeRate.get().getValue());
+                List<CriptoCurrencyDTO> criptoCurrenciesBinance = Arrays.asList(responseEntity.getBody());
 
-                criptosToUpdate.add(criptoCurrencyToUpdate);
-            });
+                Map<String, CriptoCurrencyDTO> criptoCurrencyDTOBySymbolId = this.getCriptoCurrencyDTOBySymbolId(criptoCurrenciesBinance);
+
+                criptoCurrenciesInDB.forEach(criptoCurrency -> {
+                    CriptoCurrencyDTO criptoCurrencyDTO = criptoCurrencyDTOBySymbolId.get(criptoCurrency.getSymbol());
+                    CriptoCurrency criptoCurrencyToUpdate = new CriptoCurrency();
+                    criptoCurrencyToUpdate.setId(criptoCurrency.getId());
+                    criptoCurrencyToUpdate.setSymbol(criptoCurrency.getSymbol());
+                    criptoCurrencyToUpdate.setName(criptoCurrency.getName());
+                    criptoCurrencyToUpdate.setPrice(criptoCurrencyDTO.getPrice());
+                    criptoCurrencyToUpdate.setPriceARS(criptoCurrencyDTO.getPrice()* exchangeRate.get().getValue());
+
+                    criptosToUpdate.add(criptoCurrencyToUpdate);
+                });
+            }
         }
         return currencyRepository.saveAll(criptosToUpdate);
     }
