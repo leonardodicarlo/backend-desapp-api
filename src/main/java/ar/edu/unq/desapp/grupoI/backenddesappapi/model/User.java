@@ -1,7 +1,6 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,14 +13,14 @@ public class User {
         super();
     }
 
-    public User(String firstName, String lastName, String email, String address, String password, String CVUMercadoPago, String walletAddress) {
+    public User(String firstName, String lastName, String email, String address, String password, String cvumercadoPago, String walletAddress) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.address = address;
         this.password = password;
-        this.CVUMercadoPago = CVUMercadoPago;
+        this.cvumercadoPago = cvumercadoPago;
         this.walletAddress = walletAddress;
     }
 
@@ -50,7 +49,7 @@ public class User {
     private String password;
 
     @Column(name = "cvu_mercado_pago")
-    private String CVUMercadoPago;
+    private String cvumercadoPago;
 
     @Column(name = "wallet_address")
     private String walletAddress;
@@ -103,12 +102,12 @@ public class User {
         this.password = password;
     }
 
-    public String getCVUMercadoPago() {
-        return CVUMercadoPago;
+    public String getCvumercadoPago() {
+        return cvumercadoPago;
     }
 
-    public void setCVUMercadoPago(String CVUMercadoPago) {
-        this.CVUMercadoPago = CVUMercadoPago;
+    public void setCvumercadoPago(String CVUMercadoPago) {
+        this.cvumercadoPago = CVUMercadoPago;
     }
 
     public String getWalletAddress() {

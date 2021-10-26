@@ -23,7 +23,7 @@ public class UserBuilder {
         user.setUsername(username);
         user.setAddress(address);
         user.setPassword(password);
-        user.setCVUMercadoPago(CVUMercadoPago);
+        user.setCvumercadoPago(CVUMercadoPago);
         user.setWalletAddress(walletAddress);
 
         return user;

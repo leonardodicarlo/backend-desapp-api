@@ -97,7 +97,7 @@ public class CriptoCurrencyService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
         ResponseEntity<ExchangeRateDTO[]> responseEntity = restTemplate.
-                exchange("bcraApi", HttpMethod.GET, new HttpEntity<>(headers),
+                exchange(bcraApi, HttpMethod.GET, new HttpEntity<>(headers),
                         ExchangeRateDTO[].class,
                         headers
                 );

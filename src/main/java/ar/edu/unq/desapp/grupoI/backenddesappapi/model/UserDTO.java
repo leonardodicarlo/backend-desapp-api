@@ -1,16 +1,17 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class UserDTO {
 
     private String username;
-    @JsonIgnore
+    @JsonIgnoreProperties
     private String password;
     private String firstName;
     private String lastName;
     private String address;
-    private String CVUMercadoPago;
+    private String cvumercadoPago;
     private String walletAddress;
     private String email;
 
@@ -62,19 +63,19 @@ public class UserDTO {
         this.address = address;
     }
 
-    public String getCVUMercadoPago() {
-        return CVUMercadoPago;
+    public void setWalletAddress(String walletAddress) {
+        this.walletAddress = walletAddress;
     }
 
-    public void setCVUMercadoPago(String CVUMercadoPago) {
-        this.CVUMercadoPago = CVUMercadoPago;
+    public String getCvumercadoPago() {
+        return cvumercadoPago;
+    }
+
+    public void setCvumercadoPago(String cvumercadoPago) {
+        this.cvumercadoPago = cvumercadoPago;
     }
 
     public String getWalletAddress() {
         return walletAddress;
-    }
-
-    public void setWalletAddress(String walletAddress) {
-        this.walletAddress = walletAddress;
     }
 }

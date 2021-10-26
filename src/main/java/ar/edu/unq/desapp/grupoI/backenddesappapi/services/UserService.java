@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
         newUser.setEmail(user.getEmail());
         newUser.setAddress(user.getAddress());
-        newUser.setCVUMercadoPago(user.getCVUMercadoPago());
+        newUser.setCvumercadoPago(user.getCvumercadoPago());
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setWalletAddress(user.getWalletAddress());
@@ -63,7 +63,7 @@ public class UserService implements UserDetailsService {
         newUser.setUsername(user.getUsername());
         newUser.setEmail(user.getEmail());
         newUser.setAddress(user.getAddress());
-        newUser.setCVUMercadoPago(user.getCVUMercadoPago());
+        newUser.setCvumercadoPago(user.getCvumercadoPago());
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setWalletAddress(user.getWalletAddress());

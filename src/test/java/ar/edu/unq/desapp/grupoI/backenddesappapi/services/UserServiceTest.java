@@ -41,7 +41,7 @@ public class UserServiceTest {
         userDTO.setUsername(user.getUsername());
         userDTO.setAddress(user.getAddress());
         userDTO.setPassword(user.getPassword());
-        userDTO.setCVUMercadoPago(user.getCVUMercadoPago());
+        userDTO.setCvumercadoPago(user.getCvumercadoPago());
         userDTO.setWalletAddress(user.getWalletAddress());
 
         Mockito.when(userRepository.findByUsername("username")).thenReturn(user);
@@ -72,7 +72,7 @@ public class UserServiceTest {
         assertThat(userTest.getUsername()).isEqualTo(user.getUsername());
         assertThat(userTest.getAddress()).isEqualTo(user.getAddress());
         assertThat(userTest.getPassword()).isEqualTo(user.getPassword());
-        assertThat(userTest.getCVUMercadoPago()).isEqualTo(user.getCVUMercadoPago());
+        assertThat(userTest.getCvumercadoPago()).isEqualTo(user.getCvumercadoPago());
         assertThat(userTest.getWalletAddress()).isEqualTo(user.getWalletAddress());
     }
 
