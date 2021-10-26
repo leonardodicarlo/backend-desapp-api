@@ -34,6 +34,10 @@ public class CriptoCurrencyService {
 
     @Value("${bcra.accessToken}")
     private String accessToken;
+    @Value("${bcra.api}")
+    private String bcraApi;
+    @Value("${binance.api}")
+    private String binanceApi;
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -60,7 +64,7 @@ public class CriptoCurrencyService {
 
             Optional<ExchangeRate> exchangeRate = this.getExchangeRate();
             ResponseEntity<CriptoCurrencyDTO[]> responseEntity =
-                    restTemplate.getForEntity("https://api1.binance.com/api/v3/ticker/price", CriptoCurrencyDTO[].class);
+                    restTemplate.getForEntity(binanceApi, CriptoCurrencyDTO[].class);
 
             if (responseEntity.getBody() != null){
 
@@ -93,7 +97,7 @@ public class CriptoCurrencyService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + accessToken);
         ResponseEntity<ExchangeRateDTO[]> responseEntity = restTemplate.
-                exchange("https://api.estadisticasbcra.com/usd_of", HttpMethod.GET, new HttpEntity<>(headers),
+                exchange("bcraApi", HttpMethod.GET, new HttpEntity<>(headers),
                         ExchangeRateDTO[].class,
                         headers
                 );

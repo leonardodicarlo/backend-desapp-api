@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.UserDTO;
@@ -43,5 +44,30 @@ public class UserService implements UserDetailsService {
         newUser.setLastName(user.getLastName());
         newUser.setWalletAddress(user.getWalletAddress());
         return userRepository.save(newUser);
+    }
+
+    public ArrayList<UserDTO> getUsers() {
+
+        List<User> users = userRepository.findAll();
+
+        ArrayList<UserDTO> response = new ArrayList<>();
+
+        users.forEach(user -> response.add(this.mapUser(user)));
+
+        return response;
+    }
+
+    private UserDTO mapUser(User user){
+
+        UserDTO newUser = new UserDTO();
+        newUser.setUsername(user.getUsername());
+        newUser.setEmail(user.getEmail());
+        newUser.setAddress(user.getAddress());
+        newUser.setCVUMercadoPago(user.getCVUMercadoPago());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setWalletAddress(user.getWalletAddress());
+
+        return newUser;
     }
 }

@@ -1,8 +1,11 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserDTO {
 
     private String username;
+    @JsonIgnore
     private String password;
     private String firstName;
     private String lastName;
