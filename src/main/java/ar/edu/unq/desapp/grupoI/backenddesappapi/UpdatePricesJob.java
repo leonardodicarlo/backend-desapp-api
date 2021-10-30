@@ -21,9 +21,26 @@ public class UpdatePricesJob {
 
     @Scheduled(cron = "*/60 * * * * *")
     public void reportCurrentTime() {
-        LOGGER.info("Se actualizò el precio");
-        criptoCurrencyService.getExchangeRates();
-        criptoCurrencyService.updatePrices();
+        LOGGER.info("Actualizacion de precios iniciada:");
+        try {
+            criptoCurrencyService.getExchangeRates();
+
+        }
+        catch (Exception error){
+
+            LOGGER.error("Falló conexión API BCRA");
+        }
+
+        try {
+
+            criptoCurrencyService.updatePrices();
+        }
+        catch (Exception error){
+
+            LOGGER.error("Falló conexión API BINANCE");
+        }
+
+
     }
 
 }
