@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -45,7 +46,7 @@ public class User {
     private String address;
 
     @Column(name = "password")
-    @JsonIgnore
+    @JsonIgnoreProperties
     private String password;
 
     @Column(name = "cvu_mercado_pago")
