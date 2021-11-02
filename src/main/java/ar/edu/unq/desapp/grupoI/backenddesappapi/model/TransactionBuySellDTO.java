@@ -14,5 +14,7 @@ public class TransactionBuySellDTO {
     private State state;
     private Double sellPrice;
     private Double quantity;
+    private InitialType initialType;
+
 
 }

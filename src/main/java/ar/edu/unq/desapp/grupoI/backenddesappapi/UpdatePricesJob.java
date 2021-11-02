@@ -19,7 +19,7 @@ public class UpdatePricesJob {
         this.criptoCurrencyService = criptoCurrencyService;
     }
 
-    @Scheduled(cron = "* */10 * * * *")
+    @Scheduled(cron = "*/600 * * * * *")
     public void reportCurrentTime() {
         LOGGER.info("Actualizacion de precios iniciada:");
         try {

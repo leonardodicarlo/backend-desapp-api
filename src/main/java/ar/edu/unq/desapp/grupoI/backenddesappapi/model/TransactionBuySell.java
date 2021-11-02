@@ -41,6 +41,10 @@ public class TransactionBuySell {
     @Column(name = "state")
     private State state;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "initial_type")
+    private InitialType initialType;
+
     @Column(name = "sell_price")
     private Double sellPrice;
 
