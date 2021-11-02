@@ -12,14 +12,14 @@ public class UpdatePricesJob {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UpdatePricesJob.class);
 
-    private CriptoCurrencyService criptoCurrencyService;
+    private final CriptoCurrencyService criptoCurrencyService;
 
     @Autowired
     public UpdatePricesJob(CriptoCurrencyService criptoCurrencyService) {
         this.criptoCurrencyService = criptoCurrencyService;
     }
 
-    @Scheduled(cron = "*/60 * * * * *")
+    @Scheduled(cron = "* */10 * * * *")
     public void reportCurrentTime() {
         LOGGER.info("Actualizacion de precios iniciada:");
         try {

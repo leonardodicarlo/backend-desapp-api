@@ -70,4 +70,8 @@ public class UserService implements UserDetailsService {
 
         return newUser;
     }
+
+    public User getByUserName(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

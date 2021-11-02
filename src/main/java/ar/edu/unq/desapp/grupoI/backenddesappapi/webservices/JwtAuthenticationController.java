@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoI.backenddesappapi.webservices;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtResponse;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtTokenUtil;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.auth.JwtRequest;
+import ar.edu.unq.desapp.grupoI.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.UserDTO;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,11 @@ public class JwtAuthenticationController {
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
+        User user = userDetailsService.getByUserName(authenticationRequest.getUsername());
+
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(token, user.getId()));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
