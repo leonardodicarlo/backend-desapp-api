@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"password"})
 public class User {
 
     public User() {
@@ -46,7 +47,6 @@ public class User {
     private String address;
 
     @Column(name = "password")
-    @JsonIgnoreProperties
     private String password;
 
     @Column(name = "cvu_mercado_pago")

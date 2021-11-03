@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "transactions")
 public class TransactionBuySell {
 
     @Id

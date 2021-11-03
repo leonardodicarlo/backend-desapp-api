@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoI.backenddesappapi.model.InitialType;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.State;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.TransactionBuySell;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.TransactionBuySellDTO;
@@ -37,5 +36,10 @@ public class TransactionService {
         transactionBuySell.setQuantity(buySellDTO.getQuantity());
 
         return this.transactionRepository.save(transactionBuySell);
+    }
+
+    public Iterable<TransactionBuySell> findOffers(String userId) {
+
+        return transactionRepository.findOffers(Integer.valueOf(userId));
     }
 }

@@ -19,18 +19,9 @@ public class UpdatePricesJob {
         this.criptoCurrencyService = criptoCurrencyService;
     }
 
-    @Scheduled(cron = "*/600 * * * * *")
+    @Scheduled(cron = "*/60 * * * * *")
     public void reportCurrentTime() {
         LOGGER.info("Actualizacion de precios iniciada:");
-        try {
-            criptoCurrencyService.getExchangeRates();
-
-        }
-        catch (Exception error){
-
-            LOGGER.error("Falló conexión API BCRA");
-        }
-
         try {
 
             criptoCurrencyService.updatePrices();
