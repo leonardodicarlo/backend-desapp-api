@@ -1,27 +1,26 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.services;
 
+import ar.edu.unq.desapp.grupoI.backenddesappapi.UpdatePricesJob;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.CriptoCurrency;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.CriptoCurrencyDTO;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.ExchangeRate;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.ExchangeRateDTO;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.CriptoCurrencyRepository;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.ExchangeRateRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class CriptoCurrencyService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UpdatePricesJob.class);
 
     @Value("${bcra.accessToken}")
     private String accessToken;
@@ -93,38 +94,37 @@ public class CriptoCurrencyService {
         return exchangeRateRepository.findFirstByOrderByDateDesc();
     }
 
+
+    @PostConstruct
     public void getExchangeRates() {
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + accessToken);
-        ResponseEntity<ExchangeRateDTO[]> responseEntity = restTemplate.
-                exchange(bcraApi, HttpMethod.GET, new HttpEntity<>(headers),
-                        ExchangeRateDTO[].class,
-                        headers
-                );
+        LOGGER.info("Requesting Exchange rates from " + bcraApi);
 
-        List<ExchangeRateDTO> exchangeRatesDTO = Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+        Date today = this.getDateWithoutTime();
 
-        Optional<ExchangeRateDTO> exchangeRateDTOOptional = exchangeRatesDTO.stream().max(Comparator.comparing(ExchangeRateDTO::getD));
-        if (exchangeRateDTOOptional.isPresent()) {
-            ExchangeRateDTO exchangeRateDTO = exchangeRateDTOOptional.get();
+        if (this.findByExchangeRateDate(today).isEmpty()) {
 
-            if (this.findByExchangeRateDate(addHoursToJavaUtilDate(exchangeRateDTO.getD(), 3)).isEmpty()) {
-                ExchangeRate exchangeRate = new ExchangeRate();
+            ResponseEntity<ExchangeRateDTO[]> responseEntity = restTemplate.getForEntity(bcraApi, ExchangeRateDTO[].class);
 
-                exchangeRate.setDate(addHoursToJavaUtilDate(exchangeRateDTO.getD(), 3));
-                exchangeRate.setValue(exchangeRateDTO.getV());
+            List<ExchangeRateDTO> exchangeRatesDTO = Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
 
-                exchangeRateRepository.save(exchangeRate);
+            Optional<ExchangeRateDTO> officialExchangeRate = exchangeRatesDTO
+                    .stream()
+                    .filter(ExchangeRateDTO::isOfficialRate)
+                    .findFirst();
+
+
+            if (officialExchangeRate.isPresent()) {
+                ExchangeRateDTO exchangeRateDTO = officialExchangeRate.get();
+                exchangeRateDTO.setD(today);
+
+                    ExchangeRate exchangeRate = new ExchangeRate();
+                    exchangeRate.setDate(exchangeRateDTO.getD());
+                    exchangeRate.setValue(exchangeRateDTO.getV());
+
+                    exchangeRateRepository.save(exchangeRate);
             }
         }
-    }
-
-    public Date addHoursToJavaUtilDate(Date date, int hours) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.HOUR_OF_DAY, hours);
-        return calendar.getTime();
     }
 
     public Iterable<CriptoCurrency> findAll() {
@@ -143,5 +143,15 @@ public class CriptoCurrencyService {
 
     public Optional<ExchangeRate> findByExchangeRateDate(Date date) {
         return exchangeRateRepository.findByDate(date);
+    }
+
+    private Date getDateWithoutTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTime();
     }
 }

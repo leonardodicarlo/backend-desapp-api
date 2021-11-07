@@ -23,12 +23,23 @@ public class UpdatePricesJob {
     public void reportCurrentTime() {
         LOGGER.info("Actualizacion de precios iniciada:");
         try {
-
             criptoCurrencyService.updatePrices();
         }
         catch (Exception error){
 
             LOGGER.error("Falló conexión API BINANCE");
+        }
+
+
+    }
+
+    @Scheduled(cron = "@daily")
+    public void updateExchangeRates() {
+        try {
+            criptoCurrencyService.getExchangeRates();
+        }
+        catch (Exception error){
+            LOGGER.error("Attempt to request exchange rates failed");
         }
 
 
