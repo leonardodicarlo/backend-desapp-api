@@ -72,6 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         config.addAllowedOrigin("'");
         config.addAllowedHeader("*");
         config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin("https://frontend-desapp-api-grupoi.herokuapp.com/");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
 
