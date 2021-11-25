@@ -41,19 +41,14 @@ public class CriptoCurrencyService {
     @Value("${binance.api}")
     private String binanceApi;
 
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
+    @Autowired
+    public RestTemplate restTemplate;
 
     @Autowired
     private CriptoCurrencyRepository currencyRepository;
 
     @Autowired
     private ExchangeRateRepository exchangeRateRepository;
-
-    @Autowired
-    private RestTemplate restTemplate;
 
     public Iterable<CriptoCurrency> updatePrices() {
 

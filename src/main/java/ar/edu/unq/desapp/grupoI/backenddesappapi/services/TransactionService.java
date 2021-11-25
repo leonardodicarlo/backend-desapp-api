@@ -5,7 +5,10 @@ import ar.edu.unq.desapp.grupoI.backenddesappapi.model.TransactionBuySell;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.model.TransactionBuySellDTO;
 import ar.edu.unq.desapp.grupoI.backenddesappapi.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 import static ar.edu.unq.desapp.grupoI.backenddesappapi.model.InitialType.VENTA;
 
@@ -41,5 +44,51 @@ public class TransactionService {
     public Iterable<TransactionBuySell> findOffers(String userId) {
 
         return transactionRepository.findOffers(Integer.valueOf(userId));
+    }
+
+    public TransactionBuySellDTO updateTransaction(TransactionBuySellDTO transactionBuySellDTO) {
+        TransactionBuySellDTO response = null;
+        try {
+            Optional<TransactionBuySell> transactionBuySell = transactionRepository.findById(transactionBuySellDTO.getId());
+            if (transactionBuySell.isPresent()){
+                TransactionBuySell transaction = transactionBuySell.get();
+                transaction.setState(State.PENDING_PAYMENT);
+                transaction.setUserBuyer(transactionBuySellDTO.getUserBuyer());
+                transaction.setUserSeller(transactionBuySellDTO.getUserSeller());
+            }
+            else {
+                throw new Exception("no encontre esa transaccion");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    public ResponseEntity<?> getTransactionById(Integer id) throws Exception {
+        Optional<TransactionBuySell> transactionBuySell = transactionRepository.findById(id);
+
+        try{
+        if (transactionBuySell.isPresent()) {
+            TransactionBuySell transaction = transactionBuySell.get();
+            TransactionBuySellDTO transactionBuySellDTO = new TransactionBuySellDTO();
+            transactionBuySellDTO.setInitialType(transaction.getInitialType());
+            transactionBuySellDTO.setSellPrice(transaction.getSellPrice());
+            transactionBuySellDTO.setId(transaction.getId());
+            transactionBuySellDTO.setQuantity(transaction.getQuantity());
+            transactionBuySellDTO.setState(transaction.getState());
+            transactionBuySellDTO.setUserBuyer(transaction.getUserBuyer());
+            transactionBuySellDTO.setUserSeller(transaction.getUserSeller());
+            transactionBuySellDTO.setCriptoCurrency(transaction.getCriptoCurrency());
+
+            return ResponseEntity.ok().body(transactionBuySellDTO);
+        } else {
+            throw new Exception("No se encontro la transaccion");
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

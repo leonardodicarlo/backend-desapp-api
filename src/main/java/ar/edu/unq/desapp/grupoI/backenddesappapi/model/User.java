@@ -1,7 +1,8 @@
 package ar.edu.unq.desapp.grupoI.backenddesappapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "users")
 @JsonIgnoreProperties({"password"})
+@Getter
+@Setter
 public class User {
 
     public User() {
@@ -55,76 +58,21 @@ public class User {
     @Column(name = "wallet_address")
     private String walletAddress;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "reputation")
+    private float reputation;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "finished_transactions")
+    private Integer finishedTransactions = 0;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    @Column(name = "points")
+    private Integer points = 0;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getCvumercadoPago() {
-        return cvumercadoPago;
-    }
-
-    public void setCvumercadoPago(String CVUMercadoPago) {
-        this.cvumercadoPago = CVUMercadoPago;
-    }
-
-    public String getWalletAddress() {
-        return walletAddress;
-    }
-
-    public void setWalletAddress(String walletAddress) {
-        this.walletAddress = walletAddress;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void recalculateReputation() {
+        if(this.finishedTransactions == 0){
+            this.reputation = 0;
+        }else{
+            this.reputation = (float) this.points / this.finishedTransactions;
+        }
     }
 }
 

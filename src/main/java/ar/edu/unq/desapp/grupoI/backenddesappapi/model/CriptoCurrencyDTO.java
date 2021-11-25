@@ -7,14 +7,26 @@ public class CriptoCurrencyDTO {
     private Double price;
 
     public String getName() {
-        return this.name;
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSymbol() {
-        return this.symbol;
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
     public Double getPrice() {
-        return this.price;
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
