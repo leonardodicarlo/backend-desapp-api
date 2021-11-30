@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties({"password"})
+//@JsonIgnoreProperties({"password"})
 @Getter
 @Setter
 public class User {
@@ -59,20 +59,27 @@ public class User {
     private String walletAddress;
 
     @Column(name = "reputation")
-    private float reputation;
+    private float reputation = 0;
 
-    @Column(name = "finished_transactions")
+    @Column(name = "finished_transactions" , columnDefinition = "integer default 0")
     private Integer finishedTransactions = 0;
 
     @Column(name = "points")
     private Integer points = 0;
 
-    public void recalculateReputation() {
-        if(this.finishedTransactions == 0){
-            this.reputation = 0;
-        }else{
-            this.reputation = (float) this.points / this.finishedTransactions;
-        }
+    public void cancelOperation() {
+        this.points -= 20;
+        this.calculateReputation();
+    }
+
+    private void calculateReputation() {
+        this.reputation = (this.finishedTransactions != 0) ? (float) (this.points / this.finishedTransactions) : 0;
+    }
+
+    public void closeTransaction(Integer points){
+        this.points += points;
+        this.finishedTransactions++;
+        this.calculateReputation();
     }
 }
 

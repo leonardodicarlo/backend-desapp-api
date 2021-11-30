@@ -16,12 +16,6 @@ public enum State {
     PaymentMade {
         @Override
         public State nextState() {
-            return PaymentReceived;
-        }
-    },
-    PaymentReceived {
-        @Override
-        public State nextState() {
             return Closed;
         }
     },
@@ -30,9 +24,22 @@ public enum State {
         public State nextState() {
             return Closed;
         }
+        @Override
+        public State cancel() {
+            return Closed;
+        }
+    },
+    Cancelled {
+        @Override
+        public State nextState() {
+            return Cancelled;
+        }
     };
 
 
     public abstract State nextState();
+    public State cancel(){
+        return Cancelled;
+    }
 
 }

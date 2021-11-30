@@ -25,19 +25,19 @@ VALUES (1, 'ALICE', 'ALICEUSDT'),
        (14, 'AUDIO', 'AUDIOUSDT');
 
 
-INSERT INTO transactions (id, initial_type, quantity, sell_price, state, cripto, user_buyer, user_seller)
-VALUES (1, 'COMPRA', 10.0, 1000.0, 'Open', 3, 2, null),
-       (2, 'VENTA', 10.0, 1500.0, 'Open', 5, null, 3),
-       (3, 'COMPRA', 5.0, 50000.0, 'Open', 2, 2, null),
-       (4, 'COMPRA', 10.0, 3508.0, 'Open', 8, 3, null),
-       (5, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2),
-       (6, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2),
-       (7, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 3),
-       (8, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2),
-       (9, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 4),
-       (10, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2),
-       (11, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2),
-       (12, 'COMPRA', 15.0, 7502.0, 'Open', 2, 4, null);
+INSERT INTO transactions (id, initial_type, quantity, sell_price, state, cripto, user_buyer, user_seller, created_date)
+VALUES (1, 'COMPRA', 10.0, 1000.0, 'Open', 3, 2, null, '2021-11-30 01:55:48.204002'),
+       (2, 'VENTA', 10.0, 1500.0, 'Open', 5, null, 3, '2021-11-30 01:55:48.204002'),
+       (3, 'COMPRA', 5.0, 50000.0, 'Open', 2, 2, null, '2021-11-30 01:55:48.204002'),
+       (4, 'COMPRA', 10.0, 3508.0, 'Open', 8, 3, null, '2021-11-30 01:55:48.204002'),
+       (5, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2, '2021-11-30 01:55:48.204002'),
+       (6, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2, '2021-11-30 01:55:48.204002'),
+       (7, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 3, '2021-11-30 01:55:48.204002'),
+       (8, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2, '2021-11-30 01:55:48.204002'),
+       (9, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 4, '2021-11-30 01:55:48.204002'),
+       (10, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2, '2021-11-30 01:55:48.204002'),
+       (11, 'VENTA', 22.0, 4207.0, 'Open', 10, null, 2, '2021-11-30 01:55:48.204002'),
+       (12, 'COMPRA', 15.0, 7502.0, 'Open', 2, 4, null, '2021-11-30 01:55:48.204002');
 
 
 

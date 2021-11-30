@@ -45,6 +45,13 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.updateTransaction(transactionBuySellDTO));
     }
 
+    @PutMapping("/cancel/{id}")
+    public ResponseEntity<?> cancelTransaction(@PathVariable Integer id, @RequestHeader String userId) {
+
+
+        return ResponseEntity.ok(transactionService.cancelTransaction(id, userId));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) throws Exception {
         return transactionService.getTransactionById(id);

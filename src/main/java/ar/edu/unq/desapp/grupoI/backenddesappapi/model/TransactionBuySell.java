@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
 
 
 @Getter
@@ -50,5 +51,8 @@ public class TransactionBuySell {
 
     @Column(name = "quantity")
     private Double quantity;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
 
 }
