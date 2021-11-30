@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user, Locale locale) throws Exception {
+    public ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO user, Locale locale) throws Exception {
 
         Map<String, Object> response = new HashMap<>();
 

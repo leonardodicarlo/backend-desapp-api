@@ -12,8 +12,8 @@ public class UserBuilder {
     private String username = "username";
     private String address = "address";
     private String password = "password";
-    private String CVUMercadoPago = "CVUMercadoPago";
-    private String walletAddress = "walletAddress";
+    private String CVUMercadoPago = "1234567891234567891234";
+    private String walletAddress = "1234578";
 
     public User build() {
         User user = new User();
