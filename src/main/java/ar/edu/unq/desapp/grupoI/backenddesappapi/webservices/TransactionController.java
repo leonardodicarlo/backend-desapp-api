@@ -50,10 +50,15 @@ public class TransactionController {
         return transactionService.getTransactionById(id);
     }
 
-    @GetMapping("")
+    @GetMapping("/offers")
     public ResponseEntity<?> getTransactions(@RequestHeader String userId) {
 
         return ResponseEntity.ok(transactionService.findOffers(userId));
+    }
+    @GetMapping("/mytransactions")
+    public ResponseEntity<?> getMyTransactions(@RequestHeader String userId) {
+
+        return ResponseEntity.ok(transactionService.findMyTransactions(userId));
     }
 
 

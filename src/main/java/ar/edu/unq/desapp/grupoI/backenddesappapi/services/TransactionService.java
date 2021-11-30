@@ -30,7 +30,7 @@ public class TransactionService {
         transactionBuySell.setSellPrice(buySellDTO.getSellPrice());
         transactionBuySell.setInitialType(buySellDTO.getInitialType());
         transactionBuySell.setCriptoCurrency(buySellDTO.getCriptoCurrency());
-        transactionBuySell.setState(State.OPEN);
+        transactionBuySell.setState(State.Open);
         if(buySellDTO.getInitialType() == VENTA){
             transactionBuySell.setUserSeller(buySellDTO.getUserSeller());
         } else {
@@ -46,15 +46,21 @@ public class TransactionService {
         return transactionRepository.findOffers(Integer.valueOf(userId));
     }
 
-    public TransactionBuySellDTO updateTransaction(TransactionBuySellDTO transactionBuySellDTO) {
-        TransactionBuySellDTO response = null;
+    public Iterable<TransactionBuySell> findMyTransactions(String userId) {
+
+        return transactionRepository.findMyTransactions(Integer.valueOf(userId));
+    }
+
+    public TransactionBuySell updateTransaction(TransactionBuySellDTO transactionBuySellDTO) {
+        TransactionBuySell response = null;
         try {
             Optional<TransactionBuySell> transactionBuySell = transactionRepository.findById(transactionBuySellDTO.getId());
             if (transactionBuySell.isPresent()){
                 TransactionBuySell transaction = transactionBuySell.get();
-                transaction.setState(State.PENDING_PAYMENT);
+                transaction.setState(transaction.getState().nextState());
                 transaction.setUserBuyer(transactionBuySellDTO.getUserBuyer());
                 transaction.setUserSeller(transactionBuySellDTO.getUserSeller());
+                response = transactionRepository.save(transaction);
             }
             else {
                 throw new Exception("no encontre esa transaccion");

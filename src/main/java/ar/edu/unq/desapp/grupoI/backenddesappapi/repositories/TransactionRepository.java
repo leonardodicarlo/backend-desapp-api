@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TransactionRepository extends CrudRepository<TransactionBuySell, Integer> {
 
-    @Query(value = "SELECT t FROM transactions t WHERE t.userBuyer.id <> :userId OR t.userSeller.id <> :userId")
+    @Query(value = "SELECT t FROM transactions t WHERE t.state= 'Open' AND (t.userBuyer.id <> :userId OR t.userSeller.id <> :userId)")
     Iterable<TransactionBuySell> findOffers(Integer userId);
+
+    @Query(value = "SELECT t FROM transactions t WHERE t.state <> 'Open' AND (t.userBuyer.id = :userId OR t.userSeller.id = :userId)")
+    Iterable<TransactionBuySell> findMyTransactions(Integer userId);
 }

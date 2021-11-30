@@ -90,8 +90,6 @@ public class CriptoCurrencyService {
         return exchangeRateRepository.findFirstByOrderByDateDesc();
     }
 
-
-    @PostConstruct
     public void getExchangeRates() {
 
         LOGGER.info("Requesting Exchange rates from " + bcraApi);
@@ -150,5 +148,12 @@ public class CriptoCurrencyService {
         calendar.set(Calendar.MILLISECOND, 0);
 
         return calendar.getTime();
+    }
+
+    @PostConstruct
+    private void init(){
+        this.getExchangeRates();
+        this.updatePrices();
+        this.findAll();
     }
 }
